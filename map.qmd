@@ -1,0 +1,47 @@
+---
+title: "Interactive Life Expectancy Map"
+---
+
+This interactive map shows **life expectancy** in different countries using a color gradient.
+
+```{python}
+import pandas as pd
+import plotly.express as px
+
+# Load dataset
+gapminder = pd.read_csv("gapminder.csv")
+
+# Filter for the most recent year in the dataset
+latest_year = gapminder["year"].max()
+gapminder_latest = gapminder[gapminder["year"] == latest_year]
+
+# Create the improved choropleth map
+fig = px.choropleth(
+    gapminder_latest,
+    locations="country",
+    locationmode="country names",
+    color="life_expectancy",
+    hover_name="country",
+    hover_data={"gdp_per_capita": True, "population_millions": True},
+    color_continuous_scale="Plasma",  
+    title=f"<b>Life Expectancy Across the World ({latest_year})</b>",
+    template="plotly_dark" 
+)
+
+# Improve layout
+fig.update_layout(
+    geo=dict(
+        showcoastlines=True, coastlinecolor="Black",  
+        projection_type="natural earth" 
+    ),
+    margin={"r": 0, "t": 50, "l": 0, "b": 0},  
+    coloraxis_colorbar=dict(
+        title="Life Expectancy (Years)",
+        thicknessmode="pixels", thickness=15,  
+        lenmode="fraction", len=0.75  
+    )
+)
+
+# Show the improved map
+fig.show()
+```

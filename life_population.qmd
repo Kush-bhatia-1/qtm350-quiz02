@@ -1,0 +1,38 @@
+---
+title: "Life Expectancy & Population"
+---
+
+This page explores the relationship between **life expectancy** and **population size** using the Gapminder dataset.
+
+## Data Visualization
+
+Below is a scatter plot showing **population vs. life expectancy** over time.
+
+```{python}
+# Import necessary libraries
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Load the dataset
+gapminder = pd.read_csv("gapminder.csv")
+
+# Create the plot
+plt.figure(figsize=(10, 6))
+sns.scatterplot(
+    data=gapminder,
+    x="population_millions",
+    y="life_expectancy",
+    hue="continent",
+    alpha=0.7
+)
+plt.xscale("log")  # Use log scale for better visualization
+plt.xlabel("Population (millions, log scale)")
+plt.ylabel("Life Expectancy")
+plt.title("Life Expectancy vs Population")
+plt.legend(title="Continent")
+plt.grid(True)
+
+# Show the plot
+plt.show()
+```

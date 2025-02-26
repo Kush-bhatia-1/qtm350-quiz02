@@ -1,0 +1,27 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "Gapminder Analysis"
+  navbar:
+    left:
+      - href: index.qmd
+        text: "Home"
+      - href: life_gdp.qmd
+        text: "GDP & Life Expectancy"
+      - href: life_population.qmd
+        text: "Population & Life Expectancy"
+      - href: country_analysis.qmd
+        text: "India: Economic & Health Trends"
+      - href: map.qmd
+        text: "Interactive Map"
+
+format:
+  html:
+    theme: flatly
+    css: styles.css
+    toc: true
+
+
+
